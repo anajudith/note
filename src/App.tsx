@@ -2,13 +2,14 @@
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
 import "./App.css";
+import Login from "./assets/Pages/Login";
 
 function App() {
   // const [count, setCount] = useState(0);
 
   return (
     <>
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      {/* <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
@@ -90,7 +91,8 @@ function App() {
             </a>
           </p>
         </div>
-      </div>
+      </div> */}
+      <Login />
     </>
   );
 }
