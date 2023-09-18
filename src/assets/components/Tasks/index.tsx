@@ -20,13 +20,17 @@ export default function Tasks({ tasks, onDelete, onComplete }: TasksProps) {
     <section className="w-full max-w-screen-md mx-auto mt-16 px-4">
       <header className="flex items-center justify-between mb-24">
         <div className="flex items-center gap-8">
-          <p className="text-blue-500 text-lg font-semibold">Created tasks</p>
+          <p className="text-blue-500 text-lg font-semibold">
+            Anotações criadas
+          </p>
           {/* <span>{tasksQuantity}</span> */}
           <span>18</span>
         </div>
 
         <div>
-          <p className="text-lg font-semibold text-purple">Completed tasks</p>
+          <p className="text-lg font-semibold text-purple">
+            Anotações completadas
+          </p>
           <span className="bg-gray-800 text-gray-300 py-1 px-3 rounded-full text-xs font-semibold">
             {/* {completedTasks} of {tasksQuantity} */}
             {1} of {10}

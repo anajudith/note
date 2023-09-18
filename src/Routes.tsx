@@ -17,7 +17,7 @@ export default function Routes() {
       {/* <h1>Todos tem esse texto</h1> */}
       <nav className="p-2 gap-4 flex border border-b-black hover:no-underline text-center justify-evening">
         <Link to="/">Home</Link>
-        <Link to="/private"> pagina privada</Link>
+        <Link to="/private">Minhas Anotações</Link>
         {auth.user && <button onClick={handleLogout}>Sair</button>}
       </nav>
       <Switch>
