@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { TbTrash } from "react-icons/tb";
 import { NoteProps } from "./RowNotes.structure";
 
-export function RowNotes({ note, onDelete, onComplete }: NoteProps) {
+export default function RowNotes({ note, onDelete, onComplete }: NoteProps) {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
   const openModal = () => {

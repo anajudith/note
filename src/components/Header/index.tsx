@@ -2,7 +2,7 @@ import React from "react";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import ModalLogin from "../ModalLogin";
 import TitleHeader from "../TitleHeader";
-import logo from "./logoHeader.png";
+import logo from "../../assets/images/logoHeader.png";
 import { Link } from "react-router-dom";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { HiOutlineHome } from "react-icons/hi2";
@@ -63,7 +63,6 @@ export default function Header() {
             </div>
           )}
         </div>
-        <div className="w-[10%] ">{/* Seu ícone aqui */}</div>
         <ModalLogin isOpen={isOpen} handleClose={closeModalLogin} />
       </header>
     </div>
