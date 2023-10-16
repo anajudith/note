@@ -1,16 +1,16 @@
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 export default function Button() {
-  const handleAddTask = () => {
+  const handleAddNote = () => {
     console.log("Esta chegando");
   };
   return (
     <button
-      onClick={handleAddTask}
-      className="h-full px-4 bg-blue-400 text-white border-none rounded-lg flex items-center gap-6 font-semibold text-base"
+      onClick={handleAddNote}
+      className="h-[50px] w-[120px] px-4 bg-roxo border-[1px] border-slate-950 text-slate-900  rounded-lg flex items-center gap-2 font-semibold text-base"
     >
       Create
-      <AiOutlinePlusCircle size={20} />
+      <AiOutlinePlusCircle size={40} color="black" />
     </button>
   );
 }
