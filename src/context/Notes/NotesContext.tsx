@@ -1,14 +1,5 @@
 import React from "react";
-import { Note } from "./Notes.structure";
-
-// Define a new type for the context value
-type NoteContextValue = {
-  notes: Note[];
-  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
-  deleteNoteById: (noteId: string) => void;
-  toggleNoteCompletedById: (noteId: string) => void;
-  addNote: (noteTitle: string, noteImage: string) => void;
-};
+import { Note, NoteContextValue } from "./Notes.structure";
 
 export const NoteContext = React.createContext<NoteContextValue>(null!);
 
