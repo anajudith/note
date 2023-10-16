@@ -1,7 +1,6 @@
 import React from "react";
-import InputNote from "../../components/InputWithDropzone";
+import { InputWithDropzone, RowNotes } from "../../components";
 import imageFundo from "../../assets/images/ComputerCat.gif";
-import { RowNotes } from "../../components/RowNotes";
 import { NoteContext } from "../../context/Notes/NotesContext";
 
 export default function Private() {
@@ -18,7 +17,7 @@ export default function Private() {
         className="absolute bg-cover opacity-70 w-full h-full"
       />
       <div className="relative">
-        <InputNote onAddNote={addNote} />
+        <InputWithDropzone onAddNote={addNote} />
         <div className="flex flex-col md:flex-row items-center justify-center gap-72 mb-10 ">
           <div className="flex items-center gap-2">
             <p className="font-semibold text-white bg-slate-950 rounded-lg p-2">

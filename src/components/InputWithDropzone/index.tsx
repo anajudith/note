@@ -5,11 +5,14 @@ import { BiArchiveOut } from "react-icons/bi";
 
 type OnAddNote = (title: string, image: string) => void;
 
-export default function InputNote({ onAddNote }: { onAddNote: OnAddNote }) {
+export default function InputWithDropzone({
+  onAddNote,
+}: {
+  onAddNote: OnAddNote;
+}) {
   const [title, setTitle] = React.useState("" as string);
   const [image, setImage] = React.useState<string | null>(null);
-  const [imageName, setImageName] = React.useState<string | null>(null); // Adicionando o estado do nome do arquivo
-
+  const [imageName, setImageName] = React.useState<string | null>(null);
   const onDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles.length) {
       const reader = new FileReader();

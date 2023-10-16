@@ -16,7 +16,7 @@ export default function ModalLogin({ isOpen = false, handleClose }: IProps) {
       if (isLogged) {
         navigate("/private");
         if (handleClose) {
-          handleClose(); // Fecha o modal quando o login é bem-sucedido
+          handleClose();
         }
       } else {
         alert("Não deu certo");
