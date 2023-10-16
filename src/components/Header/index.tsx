@@ -4,7 +4,6 @@ import ModalLogin from "../ModalLogin";
 import TitleHeader from "../TitleHeader";
 import logo from "./logoHeader.png";
 import { Link } from "react-router-dom";
-// FaArrowRightFromBracket
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { HiOutlineHome } from "react-icons/hi2";
 import { FiLogIn } from "react-icons/fi";
