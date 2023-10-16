@@ -1,6 +1,6 @@
 import React from "react";
 import InputNote from "../../components/InputWithDropzone";
-import imageFundo from "../../../images/ComputerCat.gif";
+import imageFundo from "../../assets/images/ComputerCat.gif";
 import { RowNotes } from "../../components/RowNotes";
 import { NoteContext } from "../../context/Notes/NotesContext";
 

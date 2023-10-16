@@ -1,9 +1,9 @@
 import React from "react";
 import { IAuthContext } from "./Auth.structure";
 
-import { User } from "../../../types/User";
+import { User } from "../../types/User";
 
-import { useApi } from "../../../hooks/useApi";
+import { useApi } from "../../hooks/useApi";
 
 export const AuthContext = React.createContext<IAuthContext>(null!);
 

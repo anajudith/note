@@ -1,4 +1,4 @@
-import imageFundo from "../../../images/homeGif.gif";
+import imageFundo from "../../assets/images/homeGif.gif";
 
 export default function Home() {
   return (

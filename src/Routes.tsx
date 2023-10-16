@@ -1,9 +1,9 @@
 import { Routes as Switch, Route } from "react-router-dom";
-import { RequireAuth } from "./assets/context/Auth/RequireAuth";
-import Private from "./assets/Pages/PrivateNotes";
-import Home from "./assets/Pages/Home";
-import Header from "./assets/components/Header";
-import { NoteProvider } from "./assets/context/Notes/NotesContext";
+import { RequireAuth } from "./context/Auth/RequireAuth";
+import Private from "./Pages/PrivateNotes";
+import Home from "./Pages/Home";
+import Header from "./components/Header";
+import { NoteProvider } from "./context/Notes/NotesContext";
 
 export default function Routes() {
   return (
