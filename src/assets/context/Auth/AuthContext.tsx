@@ -49,19 +49,3 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     </AuthContext.Provider>
   );
 };
-
-//   const value = React.useMemo(
-//     () => ({
-//       user,
-//       singin,
-//       singout,
-//     }),
-//     [user]
-//   );
-//   <AuthContext.Provider value={{ user, singin, singout }}>
-//   <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-//};
-
-// export const useAuth = () => {
-//   return React.useContext(AuthContext);
-// };

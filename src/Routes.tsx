@@ -1,32 +1,24 @@
-import React from "react";
-import { Routes as Switch, Route, Link } from "react-router-dom";
+import { Routes as Switch, Route } from "react-router-dom";
 import { RequireAuth } from "./assets/context/Auth/RequireAuth";
-import Private from "./assets/Pages/Private";
+import Private from "./assets/Pages/PrivateNotes";
 import Home from "./assets/Pages/Home";
-import { AuthContext } from "./assets/context/Auth/AuthContext";
+import Header from "./assets/components/Header";
+import { NoteProvider } from "./assets/context/Notes/NotesContext";
 
 export default function Routes() {
-  const auth = React.useContext(AuthContext);
-
-  const handleLogout = async () => {
-    await auth.singout();
-    window.location.href = "/";
-  };
   return (
-    <>
-      {/* <h1>Todos tem esse texto</h1> */}
-      <nav className="p-2 gap-4 flex border border-b-black hover:no-underline text-center justify-evening">
-        <Link to="/">Home</Link>
-        <Link to="/private">Minhas Anotações</Link>
-        {auth.user && <button onClick={handleLogout}>Sair</button>}
-      </nav>
+    <div className="">
+      <Header />
       <Switch>
         {/* pagina privada */}
         <Route
           path="/private"
           element={
             <RequireAuth>
-              <Private />
+              <NoteProvider>
+                <Private />
+              </NoteProvider>
+
               {/* // criar uma pasta routes que vão ter as rotas privadas na intenção de deixar bem arquiteturado.s */}
             </RequireAuth>
           }
@@ -34,6 +26,6 @@ export default function Routes() {
 
         <Route path="/" element={<Home />} />
       </Switch>
-    </>
+    </div>
   );
 }

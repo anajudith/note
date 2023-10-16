@@ -2,8 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { InputLogin } from "../../components";
+import { IProps } from "./ModalLogin.structure";
 
-export default function Login() {
+export default function ModalLogin({ isOpen = false, handleClose }: IProps) {
   const auth = React.useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -14,6 +15,9 @@ export default function Login() {
       const isLogged = await auth.singin(email, password);
       if (isLogged) {
         navigate("/private");
+        if (handleClose) {
+          handleClose(); // Fecha o modal quando o login é bem-sucedido
+        }
       } else {
         alert("Não deu certo");
       }
@@ -21,16 +25,19 @@ export default function Login() {
   };
 
   return (
-    <>
-      <div className="w-[full] min-h-full flex flex-col justify-center items-center text-center px-6 py-12 lg:px-8">
-        {/* <div className="w-[20%] flex flex-col justify-center content-center text-center gap-2"> */}
-        <h1 className="text-center">Página login</h1>
-        <div className="w-[25%]">
+    <div
+      className={`${
+        isOpen ? "block" : "hidden"
+      } fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-black bg-opacity-40 `}
+    >
+      <div className="bg-white p-8 rounded-lg grid gap-6 w-[30%]">
+        <h1 className="text-center text-slate-600">Login</h1>
+        <div className="gap-6 grid">
           <InputLogin
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Digite seu email"
+            placeholder="Digite seu e-mail"
           />
           <InputLogin
             type="password"
@@ -39,17 +46,21 @@ export default function Login() {
             placeholder="Digite sua senha"
           />
         </div>
-        <div>
+        <div className="flex justify-between">
           <button
             onClick={handleLogin}
-            type="submit"
-            className="flex mt-[20px] w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="px-4 h-[140%] w-[35%] bg-roxo text-white rounded-md"
           >
             Logar
           </button>
+          <button
+            onClick={handleClose}
+            className="px-4 h-[140%] w-[35%] bg-red-400 rounded-md"
+          >
+            Sair
+          </button>
         </div>
       </div>
-      {/* </div> */}
-    </>
+    </div>
   );
 }
