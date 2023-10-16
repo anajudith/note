@@ -4,4 +4,6 @@ export interface IProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   placeholder: string;
+  hasError?: boolean;
+  errorMessage?: string;
 }
