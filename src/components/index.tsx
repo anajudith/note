@@ -5,6 +5,7 @@ import InputWithDropzone from "./InputWithDropzone";
 import ModalLogin from "./ModalLogin";
 import RowNotes from "./RowNotes";
 import TitleHeader from "./TitleHeader";
+import Checkbox from "./Checkbox";
 
 export {
   InputLogin,
@@ -14,4 +15,5 @@ export {
   ModalLogin,
   RowNotes,
   TitleHeader,
+  Checkbox,
 };
