@@ -13,4 +13,3 @@ export default function Checkbox({ onClick, isCompleted }: IProps) {
     </button>
   );
 }
-// () => onComplete(note.id)
