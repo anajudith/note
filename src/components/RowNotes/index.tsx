@@ -19,7 +19,7 @@ export default function RowNotes({ note, onDelete, onComplete }: NoteProps) {
     <div className="w-[300px] shadow-xlCustom h-[200px] border-hidden  bg-slate-300 border border-gray-700 rounded-lg flex flex-col p-4 m-2">
       <div className="flex gap-4 mb-[10px]">
         <Checkbox
-          onClick={() => onComplete(note.id)}
+          onClick={() => onComplete(note.id, !note.isCompleted)}
           isCompleted={note.isCompleted}
         />
         <p

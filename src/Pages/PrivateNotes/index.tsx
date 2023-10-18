@@ -42,40 +42,40 @@ export default function Private() {
     console.log(responseGet);
   }, []);
 
-  const deleteNotes = React.useCallback(
-    async (noteId: string) => {
-      try {
-        const response = await Notes.deleteNotes(noteId);
-        await fetchNotes();
+  const deleteNotes = React.useCallback(async (noteId: string) => {
+    try {
+      const response = await Notes.deleteNotes(noteId);
+      await fetchNotes();
 
-        return response;
-      } catch (error) {
-        console.error("Erro:", error);
-      }
-    },
-    [notes]
-  );
+      return response;
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  }, []);
 
   // const updateNotes = React.useCallback(
   //   async (noteId: string, completed: boolean) => {
   //     try {
   //       const response = await Notes.updateNotes(noteId, completed);
-
   //       if (response) {
-  //         // Atualize a lista de notas após a atualização bem-sucedida.
-  //         const updatedNote = notes.map((n) =>
-  //           n.id === noteId ? { ...n, isCompleted: completed } : n
-  //         );
-  // note.isCompleted. Tenho que mandar o id e o boolean
-  //         setNotes(updatedNote);
+  //         const newNotes = notes.map((note) => {
+  //           if (note.id === noteId) {
+  //             return {
+  //               ...note,
+  //               isCompleted: !note.isCompleted,
+  //             };
+  //           }
+  //           return note;
+  //         });
+  //         setNotes(newNotes);
   //       } else {
-  //         console.error("Falha ao atualizar a nota");
+  //         console.error("error");
   //       }
   //     } catch (error) {
-  //       console.error("Erro:", error);
+  //       console.error("error", error);
   //     }
   //   },
-  //   [notes]
+  //   [notes, setNotes]
   // );
 
   const addNote = React.useCallback(
@@ -138,7 +138,9 @@ export default function Private() {
       />
       <div className="relative">
         <InputWithDropzone onAddNote={addNote} />
-        {error}
+        <div className="flex items-center justify-center pb-[15px] text-slice-700 text-lg">
+          {error}
+        </div>
         <div className="flex flex-col md:flex-row items-center justify-center gap-72 mb-10 ">
           <div className="flex items-center gap-2">
             <p className="font-semibold text-white bg-slate-950 rounded-lg p-2">
