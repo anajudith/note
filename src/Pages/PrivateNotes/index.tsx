@@ -2,10 +2,130 @@ import React from "react";
 import { InputWithDropzone, RowNotes } from "../../components";
 import imageFundo from "../../assets/images/ComputerCat.gif";
 import { NoteContext } from "../../context/Notes/NotesContext";
+import Notes from "../../service/Notes";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  "https://iydrennoiyhajcaqiuao.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5ZHJlbm5vaXloYWpjYXFpdWFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc1NDYzNjcsImV4cCI6MjAxMzEyMjM2N30.dkGeuDZSWbhAXoDPBacSL0u4Uhm6xsYerwNn49fq6sU"
+);
+
+interface INote {
+  id: string;
+  title: string;
+  isCompleted: boolean;
+  image: string;
+}
 
 export default function Private() {
-  const { notes, addNote, toggleNoteCompletedById, deleteNoteById } =
+  const { notes, setNotes, toggleNoteCompletedById } =
     React.useContext(NoteContext);
+
+  const [error, setError] = React.useState("" as string);
+
+  const fetchNotes = async () => {
+    const { data } = await supabase.from("note").select("*");
+
+    if (data) {
+      setNotes(data);
+    }
+  };
+
+  const getNotes = React.useCallback(async () => {
+    const responseGet = await Notes.getNotes();
+    if (Array.isArray(responseGet)) {
+      setNotes(responseGet);
+    } else {
+      console.error(responseGet);
+      return;
+    }
+    console.log(responseGet);
+  }, []);
+
+  const deleteNotes = React.useCallback(
+    async (noteId: string) => {
+      try {
+        const response = await Notes.deleteNotes(noteId);
+        await fetchNotes();
+
+        return response;
+      } catch (error) {
+        console.error("Erro:", error);
+      }
+    },
+    [notes]
+  );
+
+  // const updateNotes = React.useCallback(
+  //   async (noteId: string, completed: boolean) => {
+  //     try {
+  //       const response = await Notes.updateNotes(noteId, completed);
+
+  //       if (response) {
+  //         // Atualize a lista de notas após a atualização bem-sucedida.
+  //         const updatedNote = notes.map((n) =>
+  //           n.id === noteId ? { ...n, isCompleted: completed } : n
+  //         );
+  // note.isCompleted. Tenho que mandar o id e o boolean
+  //         setNotes(updatedNote);
+  //       } else {
+  //         console.error("Falha ao atualizar a nota");
+  //       }
+  //     } catch (error) {
+  //       console.error("Erro:", error);
+  //     }
+  //   },
+  //   [notes]
+  // );
+
+  const addNote = React.useCallback(
+    async (noteTitle: string, noteImage: string) => {
+      try {
+        const newNote: INote = {
+          id: crypto.randomUUID(),
+          title: noteTitle,
+          isCompleted: false,
+          image: noteImage,
+        };
+
+        const response = await Notes.postNotes(
+          newNote.id,
+          newNote.title,
+          newNote.isCompleted,
+          newNote.image
+        );
+        const responseGet = await Notes.getNotes();
+
+        if (!responseGet) {
+          setError("Deu erro");
+        }
+
+        await fetchNotes();
+        return response;
+      } catch (error) {
+        console.error("Erro:", error);
+      }
+    },
+    []
+  );
+
+  React.useEffect(() => {
+    getNotes();
+    supabase
+      .channel("table-db-changes")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "notes",
+        },
+        () => {
+          fetchNotes();
+        }
+      )
+      .subscribe();
+  }, []);
 
   const notesQuantity = notes.length;
   const completednotes = notes.filter((note) => note.isCompleted).length;
@@ -18,6 +138,7 @@ export default function Private() {
       />
       <div className="relative">
         <InputWithDropzone onAddNote={addNote} />
+        {error}
         <div className="flex flex-col md:flex-row items-center justify-center gap-72 mb-10 ">
           <div className="flex items-center gap-2">
             <p className="font-semibold text-white bg-slate-950 rounded-lg p-2">
@@ -47,7 +168,7 @@ export default function Private() {
               <RowNotes
                 key={note.id}
                 note={note}
-                onDelete={deleteNoteById}
+                onDelete={deleteNotes}
                 onComplete={toggleNoteCompletedById}
               />
             ))}

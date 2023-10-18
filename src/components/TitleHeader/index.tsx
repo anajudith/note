@@ -26,9 +26,17 @@ export default function TitleHeader({
       onClick={handleClick}
       className="cursor-pointer w-full h-[40px] gap-3 bg-roxo justify-center flex items-center text-slate-950 rounded-md p-2"
     >
-      {iconBefore}
-      {link ? <Link to={link}>{title}</Link> : <span>{title}</span>}
-      {iconAfter}
+      {link ? (
+        <Link to={link} className="flex gap-4 items-center">
+          {iconBefore}
+          {title}
+          {iconAfter}
+        </Link>
+      ) : (
+        <span className="flex gap-4 items-center">
+          {iconBefore} {title} {iconAfter}
+        </span>
+      )}
     </div>
   );
 }

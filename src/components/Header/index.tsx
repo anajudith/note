@@ -43,7 +43,7 @@ export default function Header() {
             </Link>
           ) : (
             <>
-              <img className="h-[64px]" src={logo} alt="logo" />{" "}
+              <img className="h-[64px]" src={logo} alt="logo" />
               <div className="w-[100px]">
                 <TitleHeader
                   title="Login"
