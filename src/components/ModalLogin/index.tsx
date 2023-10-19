@@ -45,18 +45,6 @@ export default function ModalLogin({ isOpen = false, handleClose }: IProps) {
       <div className="bg-white p-8 rounded-lg grid gap-6 w-[30%]">
         <h1 className="text-center text-slate-600">Login</h1>
         <div className="gap-6 grid">
-          {/* <InputLogin
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Digite seu e-mail"
-          /> */}
-          {/* <InputLogin
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Digite sua senha"
-          /> */}
           <Controller
             name="email"
             control={control}
@@ -89,7 +77,6 @@ export default function ModalLogin({ isOpen = false, handleClose }: IProps) {
         <div className="flex justify-between">
           <button
             type="submit"
-            // onClick={handleLogin}
             className="px-4 h-[140%] w-[35%] bg-roxo text-white rounded-md"
           >
             Logar

@@ -1,12 +1,5 @@
 import { Link } from "react-router-dom";
-
-interface IProps {
-  title: string;
-  onClick?: () => void;
-  link?: string;
-  iconAfter?: JSX.Element;
-  iconBefore?: JSX.Element;
-}
+import { IProps } from "./TitleHeader.structure";
 
 export default function TitleHeader({
   title,

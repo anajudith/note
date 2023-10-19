@@ -2,8 +2,7 @@ import React from "react";
 import Button from "../Button";
 import { useDropzone } from "react-dropzone";
 import { BiArchiveOut } from "react-icons/bi";
-
-type OnAddNote = (title: string, image: string) => void;
+import { OnAddNote } from "./InputWithDropzone.structure";
 
 export default function InputWithDropzone({
   onAddNote,
