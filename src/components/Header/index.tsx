@@ -26,6 +26,8 @@ export default function Header() {
     setIsOpen(false);
   };
 
+  // posso fazer a condição de autenticação no componente titleHeader mesmo.
+
   return (
     <div>
       <header className="px-20 w-full h-[60px] bg-gray-950 bg-slate-950 text-white">

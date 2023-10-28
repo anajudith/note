@@ -8,15 +8,9 @@ export default function TitleHeader({
   iconAfter,
   iconBefore,
 }: IProps) {
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
-
   return (
     <div
-      onClick={handleClick}
+      onClick={onClick}
       className="cursor-pointer w-full h-[40px] gap-3 bg-roxo justify-center flex items-center text-slate-950 rounded-md p-2"
     >
       {iconBefore}
