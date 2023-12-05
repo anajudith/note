@@ -1,8 +1,8 @@
 import React from "react";
-import { BsFillCheckCircleFill } from "react-icons/bs";
 import Modal from "react-modal";
 import { TbTrash } from "react-icons/tb";
 import { NoteProps } from "./RowNotes.structure";
+import { Checkbox } from "..";
 
 export default function RowNotes({ note, onDelete, onComplete }: NoteProps) {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
@@ -18,16 +18,10 @@ export default function RowNotes({ note, onDelete, onComplete }: NoteProps) {
   return (
     <div className="w-[300px] shadow-xlCustom h-[200px] border-hidden  bg-slate-300 border border-gray-700 rounded-lg flex flex-col p-4 m-2">
       <div className="flex gap-4 mb-[10px]">
-        <button
-          className="w-[20px] h-full bg-none border-none"
+        <Checkbox
           onClick={() => onComplete(note.id)}
-        >
-          {note.isCompleted ? (
-            <BsFillCheckCircleFill />
-          ) : (
-            <div className="w-[20px] h-[20px] rounded-full border-2 border-blue" />
-          )}
-        </button>
+          isCompleted={note.isCompleted}
+        />
         <p
           className={
             note.isCompleted
