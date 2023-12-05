@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="flex justify-center items-center">
       <img
-        className="w-full h-full object-cover"
+        className="w-screen object-cover "
         src={imageFundo}
         alt="loading..."
       />

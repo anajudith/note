@@ -5,7 +5,7 @@ import TitleHeader from "../TitleHeader";
 import logo from "../../assets/images/logoHeader.png";
 import { Link } from "react-router-dom";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-import { HiOutlineHome } from "react-icons/hi2";
+import { FaPencilAlt } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 
 export default function Header() {
@@ -30,15 +30,17 @@ export default function Header() {
     <div>
       <header className="px-20 w-full h-[60px] bg-gray-950 bg-slate-950 text-white">
         <div className="flex justify-between text-center items-center w-full h-full">
-          <div className="w-[100px]">
-            <TitleHeader
-              title="Home"
-              link="/"
-              iconBefore={<HiOutlineHome color="black" size={20} />}
-            />
-          </div>
+          {auth.user && (
+            <div className="w-[165px]">
+              <TitleHeader
+                title="Criar anotação"
+                link="/private"
+                iconBefore={<FaPencilAlt color="black" size={20} />}
+              />
+            </div>
+          )}
           {auth.user ? (
-            <Link className="" to="/private">
+            <Link className="" to="/">
               <img className="h-[64px]" src={logo} alt="logo" />
             </Link>
           ) : (
@@ -53,6 +55,7 @@ export default function Header() {
               </div>
             </>
           )}
+
           {auth.user && (
             <div className="w-[100px]">
               <TitleHeader
@@ -63,7 +66,10 @@ export default function Header() {
             </div>
           )}
         </div>
-        <ModalLogin isOpen={isOpen} handleClose={closeModalLogin} />
+
+        <div className="fixed">
+          <ModalLogin isOpen={isOpen} handleClose={closeModalLogin} />
+        </div>
       </header>
     </div>
   );
